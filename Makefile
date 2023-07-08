@@ -1,7 +1,7 @@
 build:
 	@go build -o bin/gohon
 
-run:
+run: build
 	@./bin/gohon
 
 test:
