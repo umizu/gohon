@@ -48,3 +48,16 @@ func (s *PostgresStore) UpdateBook(*Book) error {
 func (s *PostgresStore) GetBookById(int) (*Book, error) {
 	return nil, nil
 }
+
+func (s *PostgresStore) Init() error {
+	return s.CreateBookTable()
+}
+
+func (s *PostgresStore) CreateBookTable() error {
+	query := `create table if not exists book(
+		id uuid primary key,
+		title varchar(255) not null)`
+
+	_, err := s.db.Exec(query)
+	return err
+}
